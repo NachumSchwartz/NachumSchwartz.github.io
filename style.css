@@ -1,0 +1,55 @@
+/* One look for every page of the site: plain, readable, in SheetConsole's
+   colours. */
+
+:root {
+  --blue: #1a73e8;
+  --text: #202124;
+  --text-quiet: #5f6368;
+  --line: #e8eaed;
+  --surface: #ffffff;
+}
+
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--text);
+  font-family: Roboto, "Segoe UI", system-ui, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 20px 64px;
+}
+
+h1 {
+  margin: 0 0 8px;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+h2 {
+  margin: 32px 0 8px;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--blue);
+}
+
+.quiet {
+  color: var(--text-quiet);
+}
+
+a {
+  color: var(--blue);
+}
+
+footer {
+  margin-top: 48px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  color: var(--text-quiet);
+  font-size: 14px;
+}
