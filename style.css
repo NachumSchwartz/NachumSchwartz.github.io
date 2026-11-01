@@ -240,9 +240,12 @@ main.container {
   margin: 0;
 }
 
+/* Tighter than body text, so the name and email read as one unit. */
 .contact-name {
+  display: block;
   font-size: 24px;
   font-weight: 500;
+  line-height: 1.25;
 }
 
 .contact a {
