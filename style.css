@@ -13,6 +13,7 @@
      bright blue, which is kept as the accent for links. */
   --navy: #12294a;
   --on-navy-quiet: #b9cce6;
+  --on-navy-line: rgb(255 255 255 / 18%);
   --gold: #c9a84c; /* Chapman Lake Shul's gold */
   --page: #f4f6f9;
 
@@ -28,7 +29,11 @@
   --card-gap: 40px;
   --card-padding: 24px;
   --icon-size: 56px;
+  --bar-logo-size: 28px;
   --icon-tile-padding: 6px;
+  --icon-tile-inset: 4px;
+  --icon-tile: #e8f0fe;
+  --icon-radius: 10.5px;
   --accent-width: 4px;
   --radius: 12px;
   --shadow: 0 1px 3px rgb(18 41 74 / 12%), 0 8px 24px rgb(18 41 74 / 8%);
@@ -172,6 +177,16 @@ main.container {
   height: var(--icon-size);
 }
 
+/* For an icon with no background of its own, so it matches the shul's solid
+   square. The corner radius is the same proportion as that icon's. border-box
+   keeps the tile at --icon-size, with the padding taken from inside it. */
+.project-icon.tile {
+  box-sizing: border-box;
+  padding: var(--icon-tile-inset);
+  background: var(--icon-tile);
+  border-radius: var(--icon-radius);
+}
+
 /* A column so that auto margin on "See it" can push it to the bottom: cards in
    a row are the same height, and this lines their links up. */
 .project-text {
@@ -225,6 +240,21 @@ main.container {
   margin: 0;
 }
 
+.contact-name {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.contact a {
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.contact a:hover,
+.contact a:focus-visible {
+  text-decoration: underline;
+}
+
 .copyright {
   margin: 56px 0 0;
   color: var(--on-navy-quiet);
@@ -234,7 +264,7 @@ main.container {
 /* Inner pages: the same bands, quieter, so the page's content comes first */
 
 .site-header.compact {
-  padding: 32px 0 48px;
+  padding: 48px 0;
 }
 
 .site-header.compact h1 {
@@ -245,18 +275,30 @@ main.container {
   font-size: clamp(17px, 2.5vw, 20px);
 }
 
-.back-link {
-  display: inline-block;
-  margin-bottom: 32px;
-  color: var(--on-navy-quiet);
-  font-size: 14px;
+/* The company's logo in the top corner, which people expect to take them home.
+   The line beneath separates the company from the product's own header. */
+.site-bar {
+  padding: 12px var(--page-margin);
+  border-bottom: 1px solid var(--on-navy-line);
+}
+
+.site-bar a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--surface);
+  font-weight: 500;
   text-decoration: none;
 }
 
-.back-link:hover,
-.back-link:focus-visible {
-  color: var(--surface);
+.site-bar a:hover,
+.site-bar a:focus-visible {
   text-decoration: underline;
+}
+
+.site-bar img {
+  width: var(--bar-logo-size);
+  height: var(--bar-logo-size);
 }
 
 .product-title {
@@ -320,8 +362,22 @@ li {
 
 .site-footer.compact {
   padding: 32px 0;
+  text-align: center;
 }
 
 .compact .copyright {
   margin: 0;
+}
+
+.footer-links {
+  margin: 0 0 8px;
+}
+
+.footer-links a {
+  text-decoration: none;
+}
+
+.footer-links a:hover,
+.footer-links a:focus-visible {
+  text-decoration: underline;
 }
