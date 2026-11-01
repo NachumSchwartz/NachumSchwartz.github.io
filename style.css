@@ -3,10 +3,38 @@
 
 :root {
   --blue: #1a73e8;
+  --blue-dark: #1557b0;
   --text: #202124;
   --text-quiet: #5f6368;
   --line: #e8eaed;
   --surface: #ffffff;
+
+  /* The front page's bands and background. Navy rather than SheetConsole's
+     bright blue, which is kept as the accent for links. */
+  --navy: #12294a;
+  --on-navy-quiet: #b9cce6;
+  --gold: #c9a84c; /* Chapman Lake Shul's gold */
+  --page: #f4f6f9;
+
+  /* Reading text gets hard to follow in long lines, so text pages stay narrow.
+     The front page needs more room to show its screenshots. */
+  --width-text: 720px;
+  --width-wide: 1040px;
+  --page-margin: 20px;
+
+  /* The narrowest a project card may get. It also caps the front page at two
+     columns, since three of these don't fit in --width-wide. */
+  --card-min-width: 400px;
+  --card-gap: 40px;
+  --card-padding: 24px;
+  --icon-size: 56px;
+  --icon-tile-padding: 6px;
+  --accent-width: 4px;
+  --radius: 12px;
+  --shadow: 0 1px 3px rgb(18 41 74 / 12%), 0 8px 24px rgb(18 41 74 / 8%);
+  --shadow-raised: 0 2px 6px rgb(18 41 74 / 14%), 0 16px 36px rgb(18 41 74 / 14%);
+  --hover-lift: -4px;
+  --hover-time: 150ms;
 }
 
 body {
@@ -19,9 +47,9 @@ body {
 }
 
 main {
-  max-width: 720px;
+  max-width: var(--width-text);
   margin: 0 auto;
-  padding: 48px 20px 64px;
+  padding: 48px var(--page-margin) 64px;
 }
 
 h1 {
@@ -46,10 +74,254 @@ a {
   color: var(--blue);
 }
 
-footer {
-  margin-top: 48px;
-  padding-top: 16px;
-  border-top: 1px solid var(--line);
+/* Shared by every page */
+
+/* A band's colour runs edge to edge while .container keeps its content lined
+   up with the cards, which is why the two are separate elements. */
+.container,
+main.container {
+  max-width: var(--width-wide);
+  margin: 0 auto;
+  padding-left: var(--page-margin);
+  padding-right: var(--page-margin);
+}
+
+/* Lines a band's content up with the narrow text column below it. */
+.container.narrow {
+  max-width: var(--width-text);
+}
+
+.band {
+  background: var(--navy);
+  color: var(--surface);
+}
+
+/* Front page */
+
+.home {
+  background: var(--page);
+}
+
+.site-header {
+  padding: 88px 0;
+}
+
+/* The name is the only large thing on the page. clamp() lets it shrink on a
+   phone instead of wrapping awkwardly. */
+.site-header h1 {
+  font-size: clamp(36px, 7vw, 64px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.tagline {
+  margin: 0;
+  color: var(--gold);
+  font-size: clamp(20px, 3vw, 26px);
+}
+
+main.container {
+  padding-top: 64px;
+  padding-bottom: 72px;
+}
+
+/* auto-fit is what lets the page grow without a redesign: one card would fill
+   the width, two or more share columns, and a phone gets a single column.   min() stops a card overflowing a screen narrower than --card-min-width. */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--card-min-width)), 1fr));
+  gap: var(--card-gap);
+}
+
+/* position: relative is the anchor for the link's ::after below. */
+.project {
+  position: relative;
+  display: flex;
+  gap: var(--card-padding);
+  padding: var(--card-padding);
+  background: var(--surface);
+  border-left: var(--accent-width) solid var(--gold);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform var(--hover-time), box-shadow var(--hover-time);
+}
+
+.project:hover,
+.project:focus-within {
+  transform: translateY(var(--hover-lift));
+  box-shadow: var(--shadow-raised);
+}
+
+/* Someone who has asked their system for less motion shouldn't get the lift. */
+@media (prefers-reduced-motion: reduce) {
+  .project {
+    transition: none;
+  }
+
+  .project:hover,
+  .project:focus-within {
+    transform: none;
+  }
+}
+
+/* flex-shrink: 0 keeps the icon its full size when the text beside it is long. */
+.project-icon {
+  flex-shrink: 0;
+  width: var(--icon-size);
+  height: var(--icon-size);
+}
+
+/* A column so that auto margin on "See it" can push it to the bottom: cards in
+   a row are the same height, and this lines their links up. */
+.project-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.project h2 {
+  margin: 0 0 4px;
+  font-size: 22px;
+}
+
+.project h2 a {
+  text-decoration: none;
+}
+
+/* Stretches the link over the whole card, so a click anywhere on it works
+   while a screen reader still announces just the project's name. */
+.project h2 a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.project p {
+  margin: 0 0 12px;
+  color: var(--text-quiet);
+}
+
+.see-it {
+  margin-top: auto;
+  color: var(--blue);
+  font-weight: 500;
+}
+
+.site-footer {
+  padding: 72px 0 32px;
+}
+
+.site-footer a {
+  color: var(--surface);
+}
+
+.site-footer h2 {
+  margin: 0 0 12px;
+  color: var(--gold);
+  font-size: 28px;
+}
+
+.contact {
+  margin: 0;
+}
+
+.copyright {
+  margin: 56px 0 0;
+  color: var(--on-navy-quiet);
+  font-size: 14px;
+}
+
+/* Inner pages: the same bands, quieter, so the page's content comes first */
+
+.site-header.compact {
+  padding: 32px 0 48px;
+}
+
+.site-header.compact h1 {
+  font-size: clamp(30px, 5vw, 44px);
+}
+
+.site-header.compact .tagline {
+  font-size: clamp(17px, 2.5vw, 20px);
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 32px;
+  color: var(--on-navy-quiet);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.back-link:hover,
+.back-link:focus-visible {
+  color: var(--surface);
+  text-decoration: underline;
+}
+
+.product-title {
+  display: flex;
+  align-items: center;
+  gap: var(--card-padding);
+}
+
+/* The store icon has grey and blue parts that would vanish on navy, so it sits
+   on its own white tile. */
+.product-icon {
+  flex-shrink: 0;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  padding: var(--icon-tile-padding);
+  background: var(--surface);
+  border-radius: var(--radius);
+}
+
+.button {
+  display: inline-block;
+  padding: 12px 24px;
+  background: var(--blue);
+  color: var(--surface);
+  border-radius: var(--radius);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.button:hover,
+.button:focus-visible {
+  background: var(--blue-dark);
+}
+
+.screens {
+  margin: 40px 0 48px;
+}
+
+.screens figure {
+  margin: 0 0 32px;
+}
+
+.screens img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.screens figcaption {
+  margin-top: 12px;
   color: var(--text-quiet);
   font-size: 14px;
+  text-align: center;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+.site-footer.compact {
+  padding: 32px 0;
+}
+
+.compact .copyright {
+  margin: 0;
 }

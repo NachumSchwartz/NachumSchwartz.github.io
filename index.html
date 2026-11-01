@@ -4,21 +4,58 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Wheaton Web Development</title>
+  <meta name="description" content="Software for the web.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <main>
-    <h1>Wheaton Web Development</h1>
-    <p class="quiet">Software by Nachum Schwartz.</p>
+<body class="home">
+  <header class="band site-header">
+    <div class="container">
+      <h1>Wheaton Web Development</h1>
+      <p class="tagline">Software for the web.</p>
+    </div>
+  </header>
 
-    <h2>SheetConsole</h2>
-    <p>
-      Fast data entry for Google Sheets: a panel that floats over your sheet
-      and writes rows into the grid.
-      <a href="sheetconsole/">More about SheetConsole</a>
-    </p>
+  <main class="container">
+    <!-- Each project is one card. To add a project, copy a card; the layout
+         in style.css arranges however many there are. -->
+    <section class="projects" aria-label="Projects">
+      <article class="project">
+        <img class="project-icon" src="images/sheetconsole-icon.png" alt="">
+        <div class="project-text">
+          <h2><a href="sheetconsole/">SheetConsole</a></h2>
+          <p>
+            Fast data entry for Google Sheets: a panel that floats over your
+            sheet and writes rows into the grid.
+          </p>
+          <span class="see-it" aria-hidden="true">See it →</span>
+        </div>
+      </article>
 
-    <footer>Copyright © 2026 Wheaton Web Development. All rights reserved.</footer>
+      <article class="project">
+        <img class="project-icon" src="images/chapman-lake-shul-icon.svg" alt="">
+        <div class="project-text">
+          <h2><a href="https://chapmanlakeshul.org">Chapman Lake Shul</a></h2>
+          <p>
+            The full website for a summer synagogue: schedules and zmanim for
+            everyone, plus member accounts, donations, and an admin panel that
+            tracks the money.
+          </p>
+          <span class="see-it" aria-hidden="true">See it →</span>
+        </div>
+      </article>
+    </section>
   </main>
+
+  <footer class="band site-footer">
+    <div class="container">
+      <h2>Got something you'd like built?</h2>
+      <p class="contact">
+        Nachum Schwartz<br>
+        <a href="mailto:nachum@wheatonwebdev.com">nachum@wheatonwebdev.com</a>
+      </p>
+      <p class="copyright">Copyright © 2026 Wheaton Web Development. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>
