@@ -21,6 +21,9 @@ const API_KEY = 'AIzaSyC6VQb4RLQbUbyX5bww3daOcGvxN6jFzxg';
 // usable by that project - and so by SheetConsole, which belongs to it.
 const APP_ID = '754574846118';
 
+// Room left, across and down, for the border Google draws around its chooser.
+const CHOOSER_BORDER = 32;
+
 // SheetConsole's ID in the Chrome Web Store, to send it the news.
 const EXTENSION_ID = 'kehadelpnliejfajoffbfmijffdfhdcd';
 
@@ -55,9 +58,10 @@ function showPicker() {
     .setOAuthToken(token)
     .setDeveloperKey(API_KEY)
     .setAppId(APP_ID)
-    // Fill the whole window, so the chooser is all the user sees - not a box
-    // floating in an empty page.
-    .setSize(window.innerWidth, window.innerHeight)
+    // Fill the window, so the chooser is all the user sees - not a box
+    // floating in an empty page. Google draws a border around the size asked
+    // for, so a little is held back for it.
+    .setSize(window.innerWidth - CHOOSER_BORDER, window.innerHeight - CHOOSER_BORDER)
     .setCallback(onChooserDone)
     .build()
     .setVisible(true);

@@ -11,8 +11,11 @@
   --radius-pill: 18px;
 }
 
+/* The window shows exactly one thing at a time - the card, or Google's chooser
+   over it - so it never needs scrollbars. */
 html, body {
   height: 100%;
+  overflow: hidden;
 }
 
 body {
