@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- A temporary test page: kept out of search results, deleted after the test. -->
+  <meta name="robots" content="noindex">
+  <title>SheetConsole Picker Test</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <main>
+    <h1>Picker test</h1>
+    <p class="quiet">
+      Checks that a spreadsheet chosen here becomes usable by SheetConsole.
+    </p>
+
+    <p>Spreadsheet ID: <strong id="file-id"></strong></p>
+    <p><button id="choose" type="button">Sign in and choose the spreadsheet</button></p>
+    <p id="result" class="quiet"></p>
+  </main>
+
+  <!-- Google's sign-in and file chooser. They must be loaded from Google, which is
+       why this page lives on the website rather than inside the extension. -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://apis.google.com/js/api.js" async defer></script>
+  <script src="picker-test.js"></script>
+</body>
+</html>
