@@ -5,11 +5,12 @@
  * SheetConsole use the file. Then it tells SheetConsole, which closes the
  * window and carries on.
  *
- * SheetConsole hands over two things in the address:
- *   ?file=<ID>     the spreadsheet to point the chooser at;
- *   #token=<pass>  SheetConsole's own pass from Google, so the user isn't
- *                  asked to sign in a second time. It sits after "#", the part
- *                  of an address a browser never sends to the website.
+ * SheetConsole hands over two things after the "#" in the address - the part
+ * of an address a browser never sends to the website, so neither ever leaves
+ * the user's computer:
+ *   file=<ID>     the spreadsheet to point the chooser at;
+ *   token=<pass>  SheetConsole's own pass from Google, so the user isn't
+ *                 asked to sign in a second time.
  */
 
 
@@ -28,13 +29,14 @@ const CHOOSER_BORDER = 32;
 const EXTENSION_ID = 'kehadelpnliejfajoffbfmijffdfhdcd';
 
 
-const fileId = new URLSearchParams(location.search).get('file');
-const token = new URLSearchParams(location.hash.slice(1)).get('token');
+const handedOver = new URLSearchParams(location.hash.slice(1));
+const fileId = handedOver.get('file');
+const token = handedOver.get('token');
 const status = document.getElementById('status');
 const againButton = document.getElementById('again');
 
-// Take the pass out of the address bar and the window's history at once.
-history.replaceState(null, '', location.pathname + location.search);
+// Take them out of the address bar and the window's history at once.
+history.replaceState(null, '', location.pathname);
 
 
 if (!fileId || !token) {
