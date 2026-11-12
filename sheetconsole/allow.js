@@ -55,6 +55,9 @@ function showPicker() {
     .setOAuthToken(token)
     .setDeveloperKey(API_KEY)
     .setAppId(APP_ID)
+    // Fill the whole window, so the chooser is all the user sees - not a box
+    // floating in an empty page.
+    .setSize(window.innerWidth, window.innerHeight)
     .setCallback(onChooserDone)
     .build()
     .setVisible(true);
