@@ -1,0 +1,86 @@
+/* The approval window's look: the same card as SheetConsole's own "Allow"
+   screen, so the window reads as part of the app rather than a web page. */
+
+:root {
+  --blue: #1a73e8;
+  --blue-dark: #1967d2;
+  --blue-soft: #e8f0fe;
+  --text: #202124;
+  --text-quiet: #5f6368;
+  --surface: #ffffff;
+  --radius-pill: 18px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  background: var(--surface);
+  color: var(--text);
+  font-family: Roboto, "Segoe UI", system-ui, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.allow-card {
+  max-width: 360px;
+  padding: 24px;
+  text-align: center;
+}
+
+.allow-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--blue-soft);
+  color: var(--blue);
+}
+
+.allow-icon svg {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+}
+
+h1 {
+  margin: 16px 0 8px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+#status {
+  margin: 0 0 20px;
+  color: var(--text-quiet);
+}
+
+/* The same blue pill as SheetConsole's main buttons. */
+#again {
+  height: 36px;
+  padding: 0 20px;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: var(--blue);
+  color: #fff;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+#again:hover {
+  background: var(--blue-dark);
+}
+
+/* `hidden` would lose to the display rules above, so it's said again. */
+#again[hidden] {
+  display: none;
+}

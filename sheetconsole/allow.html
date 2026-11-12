@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Opened only by SheetConsole, in its own small window; no use to a search engine. -->
+  <meta name="robots" content="noindex">
+  <title>Allow SheetConsole</title>
+  <link rel="icon" href="../favicon.svg">
+  <link rel="stylesheet" href="allow.css">
+</head>
+<body>
+  <main class="allow-card">
+    <span class="allow-icon">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm6-9h-1V6A5 5 0 0 0 7 6h1.9a3.1 3.1 0 0 1 6.2 0v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2zm0 12H6V10h12v10z"/></svg>
+    </span>
+    <h1>Allow SheetConsole to use this spreadsheet</h1>
+    <p id="status">Opening Google's file chooser…</p>
+    <button id="again" type="button" hidden>Choose the spreadsheet</button>
+  </main>
+
+  <!-- Google's file chooser. It has to be loaded from Google, which is why this
+       page lives on the website rather than inside the extension. -->
+  <script src="https://apis.google.com/js/api.js"></script>
+  <script src="allow.js"></script>
+</body>
+</html>
