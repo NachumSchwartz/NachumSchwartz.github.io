@@ -9,6 +9,7 @@
   --text-quiet: #5f6368;
   --surface: #ffffff;
   --radius-pill: 18px;
+  --radius: 8px;
 }
 
 /* The window shows exactly one thing at a time - the card, or Google's chooser
@@ -81,6 +82,15 @@ h1 {
 
 #again:hover {
   background: var(--blue-dark);
+}
+
+/* Rounded corners on Google's chooser, to match SheetConsole's own cards.
+   Only its outer box is ours to style (its contents are Google's). The box's
+   class name isn't documented by Google: if it ever changes, the corners just
+   go back to square. */
+.picker-dialog {
+  border-radius: var(--radius);
+  overflow: hidden;
 }
 
 /* `hidden` would lose to the display rules above, so it's said again. */
